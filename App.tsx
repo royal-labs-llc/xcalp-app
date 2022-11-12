@@ -6,7 +6,6 @@ import { StyleSheet, View, Platform } from "react-native";
 import WalletConnectProvider from "@walletconnect/react-native-dapp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import WalletConnectExperience from "./src/components/WalletConnect";
 import { Navigation } from "./src/Navigation";
 
 const SCHEME_FROM_APP_JSON = "expohackathon-xcalp";

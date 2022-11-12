@@ -68,7 +68,7 @@ const BackImage = style.Image`
 
 export const CollectionScreen = ({ route, navigation }) => {
   useEffect(() => {
-    console.log(route.params.contractAddress);
+    console.log(route.params.event);
   }, []);
 
   return (
