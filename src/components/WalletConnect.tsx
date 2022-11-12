@@ -1,13 +1,7 @@
 import * as React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
-
-const shortenAddress = (address: string) => {
-  return `${address.slice(0, 6)}...${address.slice(
-    address.length - 4,
-    address.length
-  )}`;
-};
+import { Navigation } from "../Navigation";
 
 function Button({ onPress, label }: any) {
   return (
@@ -33,10 +27,11 @@ export default function WalletConnectExperience() {
       {!connector.connected ? (
         <Button onPress={connectWallet} label="Connect a wallet" />
       ) : (
-        <>
-          <Text>{shortenAddress(connector.accounts[0])}</Text>
-          <Button onPress={killSession} label="Log out" />
-        </>
+        <Navigation />
+        // <>
+        //   <Text>{shortenAddress(connector.accounts[0])}</Text>
+        //   <Button onPress={killSession} label="Log out" />
+        // </>
       )}
     </>
   );
