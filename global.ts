@@ -21,6 +21,8 @@ if (Platform.OS !== "web") {
     "Warning: The provided value 'moz-chunked-arraybuffer' is not a valid 'responseType'.",
   ]);
 }
+// Import the the ethers shims (**BEFORE** ethers)
+import "@ethersproject/shims"
 
 global.btoa = global.btoa || require("base-64").encode;
 global.atob = global.atob || require("base-64").decode;

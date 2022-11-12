@@ -4,6 +4,10 @@ import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import { useEffect, useState } from "react";
 import style from "styled-components/native";
 import { ERC721ABI } from "../utils/string";
+import { InfuraProvider } from "@ethersproject/providers";
+
+// Import the ethers library
+import { ethers } from "ethers";
 
 const Collection = style.View`
   flex-direction: row;
@@ -50,26 +54,40 @@ const CollectionActionButton = style.TouchableOpacity`
   width: 60px;
   justify-content: center;
   align-items: center;
-  background: #404040;
+  
   border-radius: 16px;
+  ${props => props.toBuy ? 'background: #ffe500;' : 'background: #404040;'}
 `;
 
 const CollectionActionButtonText = style.Text`
-  color: white;
+  ${props => props.toBuy ? 'color: black;' : 'color: white;'}
 `;
 
 export const CollectionComponent = ({ event }) => {
   const connector = useWalletConnect();
   const [loading, setLoading] = useState(true);
+  const [balance, setBalance] = useState(0);
   const navigation = useNavigation();
 
   const loadUserAddress = async (currentAddress: string) => {
     try {
-      // const provider = new WalletConnectProvider({
-      //   infuraId: "f3ce9eccdd924806bcdc0aa809375a96",
-      // });
-      // await provider.enable();
-      console.log({ currentAddress });
+      const provider = new InfuraProvider(
+        "goerli",
+        "f3ce9eccdd924806bcdc0aa809375a96"
+      );
+      const contract = new ethers.Contract(
+        event.contractAddress,
+        ERC721ABI,
+        provider
+      );
+
+      const balance = await contract.balanceOf(currentAddress);
+      setBalance(ethers.BigNumber.from(balance).toNumber());
+
+      console.log({
+        currentAddress,
+        balance: ethers.BigNumber.from(balance).toNumber(),
+      });
     } finally {
       setLoading(false);
     }
@@ -98,9 +116,12 @@ export const CollectionComponent = ({ event }) => {
       </CollectionDetails>
       <CollectionAction>
         <CollectionActionButton
-          onPress={() => onCollectionPress(event.contractAddress)}
+          toBuy={balance === 0}
+          onPress={() => onCollectionPress(event, balance > 0)}
         >
-          <CollectionActionButtonText>Open</CollectionActionButtonText>
+          <CollectionActionButtonText toBuy={balance === 0}>
+            {balance > 0 ? "Open" : "Buy"}
+          </CollectionActionButtonText>
         </CollectionActionButton>
       </CollectionAction>
     </Collection>

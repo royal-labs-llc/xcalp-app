@@ -161,7 +161,7 @@ export const MainScreen = ({ navigation }) => {
             ))}
             <StyleCollectionFooter>
               <StyleButton onPress={() => {}}>
-                <StyleButtonText>View All Collections</StyleButtonText>
+                <StyleButtonText>View All Upcoming Events</StyleButtonText>
               </StyleButton>
             </StyleCollectionFooter>
           </MyCollections>
