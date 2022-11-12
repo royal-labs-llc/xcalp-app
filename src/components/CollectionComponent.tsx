@@ -98,7 +98,7 @@ export const CollectionComponent = ({ event }) => {
   }, []);
 
   const onCollectionPress = () => {
-    navigation.navigate("Collection", { event });
+    navigation.navigate("Collection", { event, hasNFT });
   };
   return (
     <Collection>

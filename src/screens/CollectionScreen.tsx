@@ -1,5 +1,8 @@
-import { useEffect } from "react";
+import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import { QRCode } from "react-native-custom-qr-codes";
+
 import style from "styled-components/native";
 
 const StyleContainer = style.ScrollView`
@@ -47,12 +50,12 @@ const BackButton = style.TouchableOpacity`
   justify-content: center;
   border-width: 2px;
   border-color: white;
-`
+`;
 
 const BackText = style.Text`
   color: white;
   font-size: 8px;
-`
+`;
 
 const BackImageWrapper = style.View`
   width: 30px;
@@ -67,18 +70,24 @@ const BackImage = style.Image`
 `;
 
 export const CollectionScreen = ({ route, navigation }) => {
-  useEffect(() => {
-    console.log(route.params.event);
-  }, []);
+  const connector = useWalletConnect();
+
+  const { accounts, key } = connector.session;
+  const { contractAddress } = route.params.event;
+  const hasNFT = route.params.hasNFT;
+
+  const content = {
+    aa: accounts[0],
+    ca: contractAddress,
+  };
 
   return (
     <StyleContainer>
       <StyleHeader>
         <BackButton onPress={() => navigation.goBack()}>
           <BackImageWrapper>
-            <BackImage source={require('../assets/back.png')} />
+            <BackImage source={require("../assets/back.png")} />
           </BackImageWrapper>
-
         </BackButton>
         <CollectionImageWrapper>
           <CollectionImage source={require("../assets/collection-2.png")} />
@@ -90,6 +99,7 @@ export const CollectionScreen = ({ route, navigation }) => {
           </CollectionDetailsHeading>
         </CollectionDetails>
       </StyleHeader>
+      <QRCode content={JSON.stringify(content)} backgroundColor="white" />
       <Text>1</Text>
     </StyleContainer>
   );

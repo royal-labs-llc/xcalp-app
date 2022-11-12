@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "ExpoHackathon",
-    "slug": "ExpoHackathon",
+    "owner": "benedictpmateo",
+    "slug": "hackathon-xcalp",
     "scheme": "expohackathon-xcalp",
     "version": "1.0.0",
     "orientation": "portrait",

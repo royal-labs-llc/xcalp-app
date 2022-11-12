@@ -115,10 +115,6 @@ const Button = ({ onPress, label }: any) => {
 };
 
 export const MainScreen = ({ navigation }) => {
-  const onCollectionPress = (event) => {
-    navigation.navigate("Collection", { event });
-  };
-
   const connector = useWalletConnect();
 
   const connectWallet = React.useCallback(() => {
