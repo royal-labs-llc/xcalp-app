@@ -97,7 +97,7 @@ export const CollectionComponent = ({ event }) => {
     loadUserAddress(connector.accounts[0]);
   }, []);
 
-  const onCollectionPress = () => {
+  const onCollectionPress = (event, hasNFT) => {
     navigation.navigate("Collection", { event, hasNFT });
   };
   return (

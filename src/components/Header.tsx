@@ -1,4 +1,6 @@
 // import { SafeAreaView } from "react-native"
+import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import style from "styled-components/native";
 
@@ -25,11 +27,22 @@ const StyleTextHeading = style.Text`
   color: white;
 `;
 
-export const Header = () => {
+export const Header = ({ page }) => {
+  const [title, setTitle] = useState('XCalp');
+
+  useEffect(() => {
+    if (page && (page[0] === '@' || page === 'Connect')) {
+      setTitle('Community Connect')
+      console.log(page);
+    } else {
+      setTitle('XCalp')
+    }
+  }, [page])
+
   return (
     <StyleCard>
       <StyleContainer>
-        <StyleTextHeading>XCalp</StyleTextHeading>
+        <StyleTextHeading>{title}</StyleTextHeading>
       </StyleContainer>
     </StyleCard>
   );
