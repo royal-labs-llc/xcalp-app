@@ -19,6 +19,10 @@ const StyleContainer = style.SafeAreaView`
   padding-bottom: 20px;
 `;
 
+const StyleTouchableOpacity = style.TouchableOpacity`
+
+`;
+
 const StyleTextHeading = style.Text`
   font-size: 20px;
   font-weight: 700;
@@ -28,22 +32,25 @@ const StyleTextHeading = style.Text`
 `;
 
 export const Header = ({ page }) => {
-  const [title, setTitle] = useState('XCalp');
+  const navigation = useNavigation();
+  const [title, setTitle] = useState("XCalp");
 
   useEffect(() => {
-    if (page && (page[0] === '@' || page === 'Connect')) {
-      setTitle('Community Connect')
+    if (page && (page[0] === "@" || page === "Connect")) {
+      setTitle("Community Connect");
       console.log(page);
     } else {
-      setTitle('XCalp')
+      setTitle("XCalp");
     }
-  }, [page])
+  }, [page]);
 
   return (
     <StyleCard>
-      <StyleContainer>
-        <StyleTextHeading>{title}</StyleTextHeading>
-      </StyleContainer>
+      <StyleTouchableOpacity onPress={() => navigation.navigate("Scanner")}>
+        <StyleContainer>
+          <StyleTextHeading>{title}</StyleTextHeading>
+        </StyleContainer>
+      </StyleTouchableOpacity>
     </StyleCard>
   );
 };

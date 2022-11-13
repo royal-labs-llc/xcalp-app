@@ -8,6 +8,7 @@ import { Header } from "./components/Header";
 
 import { MainScreen } from "./screens/MainScreen";
 import { CollectionScreen } from "./screens/CollectionScreen";
+import { ScannerScreen } from "./screens/ScannerScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { View } from "react-native";
 import { Text } from "react-native";
@@ -28,6 +29,7 @@ const MainNavigation = () => {
         component={CollectionScreen}
         options={options}
       />
+      <Stack.Screen name="Scanner" component={ScannerScreen} options={options} />
     </Stack.Navigator>
   );
 };

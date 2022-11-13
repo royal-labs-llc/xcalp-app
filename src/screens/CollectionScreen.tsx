@@ -73,7 +73,7 @@ export const CollectionScreen = ({ route, navigation }) => {
   const connector = useWalletConnect();
 
   const { accounts, key } = connector.session;
-  const { contractAddress } = route.params.event;
+  const { contractAddress, name, image, isStatic } = route.params.event;
   const hasNFT = route.params.hasNFT;
 
   const content = {
@@ -90,16 +90,17 @@ export const CollectionScreen = ({ route, navigation }) => {
           </BackImageWrapper>
         </BackButton>
         <CollectionImageWrapper>
-          <CollectionImage source={require("../assets/collection-2.png")} />
+          <CollectionImage source={image} />
         </CollectionImageWrapper>
-
         <CollectionDetails>
           <CollectionDetailsHeading>
-            ApprovingCorgis NFT
+            { name }
           </CollectionDetailsHeading>
         </CollectionDetails>
       </StyleHeader>
+
       <QRCode content={JSON.stringify(content)} backgroundColor="white" />
+
       <Text>1</Text>
     </StyleContainer>
   );

@@ -1,4 +1,5 @@
 import style from "styled-components/native";
+import { shortenAddress } from "../utils/string";
 
 const StyleView = style.View`
   width: 100%;
@@ -14,6 +15,16 @@ const StyleView = style.View`
   justify-content: flex-end;
   `}
   
+`;
+
+const Text = style.Text`
+
+`;
+
+const StyleViewWrapperMain = style.View`
+    width: 100%;
+    flex-direction: column;
+
 `;
 
 const StyleViewWrapper = style.View`
@@ -41,12 +52,27 @@ const StyleAvatar = style.View`
 `;
 
 export const MessageText = ({ isSender, message, address, timestamp }) => {
+  const add = isSender ? { marginLeft: "auto" } : {};
+  const org = address === "1" ? { color: "#ff564a" } : {};
   return (
-    <StyleView isSender={isSender}>
-      <StyleViewWrapper isSender={isSender}>
-        <StyleMessage>{message}</StyleMessage>
-      </StyleViewWrapper>
-      <StyleAvatar></StyleAvatar>
-    </StyleView>
+    <StyleViewWrapperMain>
+      <Text
+        style={{
+          color: "white",
+          marginBottom: 8,
+          fontWeight: "bold",
+          ...add,
+          ...org,
+        }}
+      >
+        {address === "1" ? "Organizer" : shortenAddress(address || "")}
+      </Text>
+      <StyleView isSender={isSender}>
+        <StyleViewWrapper isSender={isSender}>
+          <StyleMessage>{message}</StyleMessage>
+        </StyleViewWrapper>
+        <StyleAvatar></StyleAvatar>
+      </StyleView>
+    </StyleViewWrapperMain>
   );
 };

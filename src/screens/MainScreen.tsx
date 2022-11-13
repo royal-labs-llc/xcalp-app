@@ -4,6 +4,8 @@ import { View, Text } from "react-native";
 import style from "styled-components/native";
 import { CollectionComponent } from "../components/CollectionComponent";
 import { shortenAddress } from "../utils/string";
+import axios from "axios";
+import { useEffect } from "react";
 
 const StyleContainer = style.ScrollView`
   padding: 16px;
@@ -73,6 +75,14 @@ const StyleButtonText = style.Text`
 `;
 const events = [
   {
+    _id: "636fce1ef0d89ba076817763",
+    contractAddress: "0x648a1561aa45ec275071383c5026a63535ae2378",
+    name: "BlackPink Concert",
+    location: "Philippine Arena, Bulacan, Philippines",
+    datetime: "26 March 2023 19:00",
+    image: require("../assets/blackpink.jpeg"),
+  },
+  {
     _id: 1,
     name: "ApprovingCorgis Concert",
     contractAddress: "0x24D76753D6Ccb3a38686C8E8ddEED16852d5f1A4",
@@ -113,6 +123,8 @@ const Button = ({ onPress, label }: any) => {
     </StyleButtonConnect>
   );
 };
+
+const BLACKPINK_ADDRESS = "0x648a1561aa45ec275071383c5026a63535ae2378";
 
 export const MainScreen = ({ navigation }) => {
   const connector = useWalletConnect();

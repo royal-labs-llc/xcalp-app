@@ -105,7 +105,16 @@ const StyleInput = style.TextInput`
 export const ChatMainScreen = ({ navigation, route }) => {
   const connector = useWalletConnect();
   const [messageHeight, setMessageHeight] = useState(80);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      message: 'REMINDER!!! \n\nPlease ready your light sticks before the event.',
+      sender: '1',
+    },
+    {
+      message: `After the one hour concert, enjoy korean bbq from the Samgyupsal in the home of culinary experts near the road.\n\nBook early, only 50 seats. Reserve by prepayment.`,
+      sender: '1',
+    }
+  ]);
   const tabBarHeight = useBottomTabBarHeight();
   const height = Dimensions.get("screen").height;
   const [text, setText] = useState("");
@@ -180,6 +189,7 @@ export const ChatMainScreen = ({ navigation, route }) => {
             <MessageText
               key={i}
               message={data.message}
+              address={data.sender}
               isSender={
                 connector?.accounts.length > 0
                   ? data.sender.toLocaleLowerCase() ==
