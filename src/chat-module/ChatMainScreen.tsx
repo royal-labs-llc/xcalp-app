@@ -113,6 +113,15 @@ export const ChatMainScreen = ({ navigation, route }) => {
     {
       message: `After the one hour concert, enjoy korean bbq from the Samgyupsal in the home of culinary experts near the road.\n\nBook early, only 50 seats. Reserve by prepayment.`,
       sender: '1',
+    },
+    {
+      message: "LET'S GO BLINKS!!!!",
+      sender: '0xEE0c2C6CD8A423dC22e7F0D9abc263c2917b46c5',
+    },
+    {
+      message: "I'm so excited to see the blackpink!!!",
+      image: require('../assets/blackpink.jpeg'),
+      sender: '0xe8EA6bbCCA4590442d74E4549D1541809e8A4425',
     }
   ]);
   const tabBarHeight = useBottomTabBarHeight();
@@ -189,6 +198,7 @@ export const ChatMainScreen = ({ navigation, route }) => {
             <MessageText
               key={i}
               message={data.message}
+              image={data?.image}
               address={data.sender}
               isSender={
                 connector?.accounts.length > 0

@@ -1,3 +1,4 @@
+import { Image } from "react-native";
 import style from "styled-components/native";
 import { shortenAddress } from "../utils/string";
 
@@ -38,20 +39,19 @@ const StyleViewWrapper = style.View`
 `;
 
 const StyleMessage = style.Text`
-color: white;
-font-weight: 600;
-max-width: 250px;
-
+  color: white;
+  font-weight: 600;
+  max-width: 250px;
 `;
 
 const StyleAvatar = style.View`
     border-radius: 120px;
     height: 40px;
     width: 40px;
-    background-color: blue;
+    background-color: white;
 `;
 
-export const MessageText = ({ isSender, message, address, timestamp }) => {
+export const MessageText = ({ isSender, image, message, address, timestamp }) => {
   const add = isSender ? { marginLeft: "auto" } : {};
   const org = address === "1" ? { color: "#ff564a" } : {};
   return (
@@ -69,9 +69,10 @@ export const MessageText = ({ isSender, message, address, timestamp }) => {
       </Text>
       <StyleView isSender={isSender}>
         <StyleViewWrapper isSender={isSender}>
+          {Boolean(image) && <Image style={{ width: 200}} source={image} />}
           <StyleMessage>{message}</StyleMessage>
         </StyleViewWrapper>
-        <StyleAvatar></StyleAvatar>
+        <StyleAvatar style={address === "1" ? { backgroundColor: 'red' } : {}}></StyleAvatar>
       </StyleView>
     </StyleViewWrapperMain>
   );
