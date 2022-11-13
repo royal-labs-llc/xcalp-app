@@ -84,7 +84,6 @@ export const CollectionComponent = ({ event }) => {
       );
 
       const balance = await contract.balanceOf(currentAddress);
-      await contract.tokenOfOwnerByIndex(0)
       setBalance(ethers.BigNumber.from(balance).toNumber());
 
       console.log({
