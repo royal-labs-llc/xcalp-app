@@ -17,7 +17,7 @@ export const ScannerScreen = ({}) => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert('Ticket Claimed!');
+    alert('Attendance Validated!');
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 

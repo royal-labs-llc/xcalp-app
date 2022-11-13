@@ -51,7 +51,9 @@ const CollectionAction = style.View`
 
 const CollectionActionButton = style.TouchableOpacity`
   height: 30px;
-  width: 60px;
+  max-width: 200px;
+  padding-left: 16px;
+  padding-right: 16px;
   justify-content: center;
   align-items: center;
   
@@ -82,6 +84,7 @@ export const CollectionComponent = ({ event }) => {
       );
 
       const balance = await contract.balanceOf(currentAddress);
+      await contract.tokenOfOwnerByIndex(0)
       setBalance(ethers.BigNumber.from(balance).toNumber());
 
       console.log({
@@ -117,10 +120,10 @@ export const CollectionComponent = ({ event }) => {
       <CollectionAction>
         <CollectionActionButton
           toBuy={balance === 0}
-          onPress={() => onCollectionPress(event, balance > 0)}
+          onPress={() => balance === 0 ? undefined : onCollectionPress(event, balance > 0)}
         >
           <CollectionActionButtonText toBuy={balance === 0}>
-            {balance > 0 ? "Open" : "Buy"}
+            {balance > 0 ? "View Ticket" : "Buy"}
           </CollectionActionButtonText>
         </CollectionActionButton>
       </CollectionAction>

@@ -69,11 +69,34 @@ const BackImage = style.Image`
   height: 30px;
 `;
 
+const StyleQRWrapper = style.View`
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 24px;
+
+`
+
+const StyleHeaderWrapper = style.View`
+
+`
+
+const StyleConcertLocation = style.Text`
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+`
+
+const StyleWrapper = style.View`
+
+`
+
 export const CollectionScreen = ({ route, navigation }) => {
   const connector = useWalletConnect();
 
   const { accounts, key } = connector.session;
-  const { contractAddress, name, image, isStatic } = route.params.event;
+  const { contractAddress, name, image, location, datetime, isStatic } = route.params.event;
   const hasNFT = route.params.hasNFT;
 
   const content = {
@@ -99,9 +122,28 @@ export const CollectionScreen = ({ route, navigation }) => {
         </CollectionDetails>
       </StyleHeader>
 
-      <QRCode content={JSON.stringify(content)} backgroundColor="white" />
 
-      <Text>1</Text>
+      <StyleHeaderWrapper>
+        <StyleConcertLocation style={{ marginBottom: 8, marginTop: 12 }}>EVENT DETAILS:</StyleConcertLocation>
+        <StyleConcertLocation>WHEN: {location}</StyleConcertLocation>
+        <StyleConcertLocation>WHERE: {datetime}</StyleConcertLocation>
+        <StyleConcertLocation>TICKET STATUS: Not Claimed</StyleConcertLocation>
+      </StyleHeaderWrapper>
+      <StyleQRWrapper>
+        <StyleConcertLocation style={{  marginTop: 30 }}>QR CONCERT TICKET</StyleConcertLocation>
+        {/* TODO: Get matadata in ipfs */}
+        <StyleConcertLocation style={{ marginBottom: 24, marginTop: 4 }}>FOR GENERAL ADMISSION ONLY</StyleConcertLocation>
+        <QRCode content={JSON.stringify(content)} backgroundColor="white" />
+      </StyleQRWrapper>
+
+      <StyleWrapper style={{ marginTop: 24 }}>
+        <Text style={{ color: 'white', fontWeight: 'bold'}}>Reminders</Text>
+        <Text style={{ color: 'white'}}>1. Don't forget to bring your QR ticket</Text>
+        <Text style={{ color: 'white'}}>2. Don't share the PRIVATE KEY of your wallet. </Text>
+        <Text style={{ color: 'white'}}>3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+        <Text style={{ color: 'white'}}>4. Duis aute irure dolor in reprehenderit in voluptate velit.</Text>
+
+      </StyleWrapper>
     </StyleContainer>
   );
 };

@@ -57,8 +57,8 @@ const MyCollections = style.View`
 
 const StyleButton = style.TouchableOpacity`
   border-radius: 16px;
-  background: #404040;
-  width: 200px;
+  margin-top: 24px;
+  margin-left: auto;
 `;
 
 const StyleCollectionFooter = style.View`
@@ -71,7 +71,6 @@ const StyleButtonText = style.Text`
   font-size: 16px;
   font-weight: 600;
   margin: 0 auto;
-  padding: 14px 16px 16px 16px;
 `;
 const events = [
   {
@@ -143,9 +142,9 @@ export const MainScreen = ({ navigation }) => {
       <StyleRow>
         <StyleWrapperCard>
           <StyleCard>
-            <StyleImage source={require("../assets/news-1.png")} />
+            <StyleImage source={require("../assets/news-1.jpeg")} />
           </StyleCard>
-          <StyleTextCard>Airline NFT News | Boarding Pa...</StyleTextCard>
+          <StyleTextCard>BLACKPINK: THE SHOW now ha...</StyleTextCard>
         </StyleWrapperCard>
         <StyleWrapperCard>
           <StyleCard>
@@ -169,7 +168,7 @@ export const MainScreen = ({ navigation }) => {
             ))}
             <StyleCollectionFooter>
               <StyleButton onPress={() => {}}>
-                <StyleButtonText>View All Upcoming Events</StyleButtonText>
+                <StyleButtonText>Show more</StyleButtonText>
               </StyleButton>
             </StyleCollectionFooter>
           </MyCollections>
